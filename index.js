@@ -73,6 +73,8 @@ function put(request, response) {
 	console.log("PUT:: Re-generate new seesion_id for the same user");
 	// TODO: refresh session id; similar to the post() function
 
+	var newSessionId = login.login(login.sessionMap[sessionId].name, login.sessionMap[sessionId].email);
+	response.setHeader('Set-Cookie', 'session_id=' + newSessionId);
 	response.end("Re-freshed session id\n");
 };
 

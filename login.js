@@ -45,6 +45,8 @@ Login.prototype.logout = function(sessionId) {
    /*
 	* TODO: Remove the given sessionId from the sessionMap
 	*/
+	this.sessionMap[sessionId]=null;
+};
 };
 
 // Export the Login class
