@@ -77,6 +77,19 @@ function put(request, response) {
 	response.setHeader('Set-Cookie', 'session_id=' + newSessionId);
 	response.end("Re-freshed session id\n");
 	response.end("Re-freshed session id\n");*/
+
+	var cookies = request.cookies;
+	if ('session_id' in cookies) {
+		var sid = cookies['session_id'];
+		if ( login.isLoggedIn(sid) ) {
+			var credentials= login.sessionMap[sessionId];
+			var newSessionId = login.login(credentials['name'], credentials['email']);
+			response.setHeader('Set-Cookie', 'session_id=' + newSessionId);
+			response.end("Re-freshed session id\n");
+		}
+
+	//var newSessionId = login.login(login.sessionMap[sessionId].name, login.sessionMap[sessionId].email);
+	}
 };
 
 app.listen(8000);
