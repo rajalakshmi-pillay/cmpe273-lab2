@@ -72,18 +72,11 @@ function del(request, response) {
 function put(request, response) {
 	console.log("PUT:: Re-generate new seesion_id for the same user");
 	// TODO: refresh session id; similar to the post() function
-	var cookies = request.cookies;
-	if ('session_id' in cookies) {
-		var sid = cookies['session_id'];
-		if ( login.isLoggedIn(sid) ) {
-			var credentials= login.sessionMap[sessionId];
-			var newSessionId = login.login(credentials['name'], credentials['email']);
-			response.setHeader('Set-Cookie', 'session_id=' + newSessionId);
-			response.end("Re-freshed session id\n");
-		}
 
-	//var newSessionId = login.login(login.sessionMap[sessionId].name, login.sessionMap[sessionId].email);
-	}
+/*var newSessionId = login.login(login.sessionMap[sessionId].name, login.sessionMap[sessionId].email);
+	response.setHeader('Set-Cookie', 'session_id=' + newSessionId);
+	response.end("Re-freshed session id\n");
+	response.end("Re-freshed session id\n");*/
 };
 
 app.listen(8000);
